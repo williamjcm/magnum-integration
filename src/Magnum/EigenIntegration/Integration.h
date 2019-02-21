@@ -78,16 +78,16 @@ namespace Magnum {
 namespace Math { namespace Implementation {
 
 template<std::size_t size> struct BoolVectorConverter<size, Eigen::Array<bool, int(size), 1>> {
-    static BoolVector<size> from(const Eigen::Array<bool, size, 1>& other) {
+    static BoolVector<size> from(const Eigen::Array<bool, int(size), 1>& other) {
         BoolVector<size> out{NoInit};
         for(std::size_t i = 0; i != size; ++i)
             out.set(i, other(i, 0));
         return out;
     }
 
-    static Eigen::Array<bool, size, 1> to(const BoolVector<size>& other) {
+    static Eigen::Array<bool, int(size), 1> to(const BoolVector<size>& other) {
         /** @todo is there a NoInit tag or something? */
-        Eigen::Array<bool, size, 1> out;
+        Eigen::Array<bool, int(size), 1> out;
         for(std::size_t i = 0; i != size; ++i)
             out(i, 0) = other[i];
         return out;
@@ -95,16 +95,16 @@ template<std::size_t size> struct BoolVectorConverter<size, Eigen::Array<bool, i
 };
 
 template<std::size_t size, class T> struct VectorConverter<size, T, Eigen::Array<T, int(size), 1>> {
-    static Vector<size, T> from(const Eigen::Array<T, size, 1>& other) {
+    static Vector<size, T> from(const Eigen::Array<T, int(size), 1>& other) {
         Vector<size, T> out{NoInit};
         for(std::size_t i = 0; i != size; ++i)
             out[i] = other(i, 0);
         return out;
     }
 
-    static Eigen::Array<T, size, 1> to(const Vector<size, T>& other) {
+    static Eigen::Array<T, int(size), 1> to(const Vector<size, T>& other) {
         /** @todo is there a NoInit tag or something? */
-        Eigen::Array<T, size, 1> out;
+        Eigen::Array<T, int(size), 1> out;
         for(std::size_t i = 0; i != size; ++i)
             out(i, 0) = other[i];
         return out;
@@ -112,16 +112,16 @@ template<std::size_t size, class T> struct VectorConverter<size, T, Eigen::Array
 };
 
 template<std::size_t size, class T> struct VectorConverter<size, T, Eigen::Matrix<T, int(size), 1>> {
-    static Vector<size, T> from(const Eigen::Matrix<T, size, 1>& other) {
+    static Vector<size, T> from(const Eigen::Matrix<T, int(size), 1>& other) {
         Vector<size, T> out{NoInit};
         for(std::size_t i = 0; i != size; ++i)
             out[i] = other(i, 0);
         return out;
     }
 
-    static Eigen::Matrix<T, size, 1> to(const Vector<size, T>& other) {
+    static Eigen::Matrix<T, int(size), 1> to(const Vector<size, T>& other) {
         /** @todo is there a NoInit tag or something? */
-        Eigen::Matrix<T, size, 1> out;
+        Eigen::Matrix<T, int(size), 1> out;
         for(std::size_t i = 0; i != size; ++i)
             out(i, 0) = other[i];
         return out;
@@ -129,7 +129,7 @@ template<std::size_t size, class T> struct VectorConverter<size, T, Eigen::Matri
 };
 
 template<std::size_t cols, std::size_t rows, class T> struct RectangularMatrixConverter<cols, rows, T, Eigen::Array<T, int(rows), int(cols)>> {
-    static RectangularMatrix<cols, rows, T> from(const Eigen::Array<T, rows, cols>& other) {
+    static RectangularMatrix<cols, rows, T> from(const Eigen::Array<T, int(rows), int(cols)>& other) {
         RectangularMatrix<cols, rows, T> out{NoInit};
         for(std::size_t col = 0; col != cols; ++col)
             for(std::size_t row = 0; row != rows; ++row)
@@ -137,9 +137,9 @@ template<std::size_t cols, std::size_t rows, class T> struct RectangularMatrixCo
         return out;
     }
 
-    static Eigen::Array<T, rows, cols> to(const RectangularMatrix<cols, rows, T>& other) {
+    static Eigen::Array<T, int(rows), int(cols)> to(const RectangularMatrix<cols, rows, T>& other) {
         /** @todo is there a NoInit tag or something? */
-        Eigen::Array<T, rows, cols> out;
+        Eigen::Array<T, int(rows), int(cols)> out;
         for(std::size_t col = 0; col != cols; ++col)
             for(std::size_t row = 0; row != rows; ++row)
                 out(row, col) = other[col][row];
@@ -148,7 +148,7 @@ template<std::size_t cols, std::size_t rows, class T> struct RectangularMatrixCo
 };
 
 template<std::size_t cols, std::size_t rows, class T> struct RectangularMatrixConverter<cols, rows, T, Eigen::Matrix<T, int(rows), int(cols)>> {
-    static RectangularMatrix<cols, rows, T> from(const Eigen::Matrix<T, rows, cols>& other) {
+    static RectangularMatrix<cols, rows, T> from(const Eigen::Matrix<T, int(rows), int(cols)>& other) {
         RectangularMatrix<cols, rows, T> out{NoInit};
         for(std::size_t col = 0; col != cols; ++col)
             for(std::size_t row = 0; row != rows; ++row)
@@ -156,9 +156,9 @@ template<std::size_t cols, std::size_t rows, class T> struct RectangularMatrixCo
         return out;
     }
 
-    static Eigen::Matrix<T, rows, cols> to(const RectangularMatrix<cols, rows, T>& other) {
+    static Eigen::Matrix<T, int(rows), int(cols)> to(const RectangularMatrix<cols, rows, T>& other) {
         /** @todo is there a NoInit tag or something? */
-        Eigen::Matrix<T, rows, cols> out;
+        Eigen::Matrix<T, int(rows), int(cols)> out;
         for(std::size_t col = 0; col != cols; ++col)
             for(std::size_t row = 0; row != rows; ++row)
                 out(row, col) = other[col][row];
