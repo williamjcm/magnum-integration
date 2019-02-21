@@ -66,7 +66,7 @@ void GeometryIntegrationTest::translation2D() {
     Vector2 a{0.3f, -1.3f};
     Eigen::Translation2f b{0.3f, -1.3f};
 
-    CORRADE_COMPARE(Vector2{b}, a);
+    CORRADE_COMPARE(Vector2(b), a);
     CORRADE_VERIFY(Eigen::Translation2f(a).isApprox(b));
 }
 
@@ -74,7 +74,7 @@ void GeometryIntegrationTest::translation3D() {
     Vector3d a{0.3, -1.3, 2.1};
     Eigen::Translation3d b{0.3, -1.3, 2.1};
 
-    CORRADE_COMPARE(Vector3d{b}, a);
+    CORRADE_COMPARE(Vector3d(b), a);
     CORRADE_VERIFY(Eigen::Translation3d(a).isApprox(b));
 }
 
@@ -82,7 +82,7 @@ void GeometryIntegrationTest::quaternion() {
     Quaternion a{{1.0f, 3.1f, 1.2f}, 0.5f};
     Eigen::Quaternionf b{0.5f, 1.0f, 3.1f, 1.2f};
 
-    CORRADE_COMPARE(Quaternion{b}, a);
+    CORRADE_COMPARE(Quaternion(b), a);
     CORRADE_VERIFY(Eigen::Quaternionf(a).isApprox(b));
 
     /* Explicitly check the parts to avoid having the conversion done wrong
